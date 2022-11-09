@@ -1,3 +1,2 @@
-import "./tasks/helloWorld";
-// import "./tasks/helloToSlack";
-// import "./tasks/webhookToSlack";
+import "./actions/helloWorld";
+// import "./actions/helloToSlack";

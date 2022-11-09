@@ -1,7 +1,7 @@
-import { defineTask } from "@bigidea/integration";
-import { Slack } from "@bigidea/slack";
+import { defineAction } from "@runlightyear/lightyear";
+import { Slack } from "@runlightyear/slack";
 
-defineTask({
+defineAction({
   name: "helloSlack",
   description: "Send a message to Slack",
   auths: {

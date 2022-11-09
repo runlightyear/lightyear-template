@@ -1,6 +1,6 @@
-import { defineTask } from "@bigidea/integration";
+import { defineAction } from "@runlightyear/lightyear";
 
-defineTask({
+defineAction({
   name: "helloWorld",
   run: async () => {
     console.log("Hello World!");
