@@ -3,12 +3,9 @@ import { Slack } from "@runlightyear/slack";
 
 defineAction({
   name: "helloSlack",
+  title: "Hello Slack",
   description: "Send a message to Slack",
-  auths: {
-    slack: Slack.defineAuth({
-      name: "slack",
-    }),
-  },
+  apps: ['slack'],
   run: async ({ auths }) => {
     const slack = new Slack({ auth: auths.slack });
 
