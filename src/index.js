@@ -1,2 +1,2 @@
-import "./actions/helloWorld";
-// import "./actions/helloToSlack";
+import "./helloWorld";
+// import "./helloSlack";
