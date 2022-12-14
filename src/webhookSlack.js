@@ -16,7 +16,7 @@ defineAction({
 
     await slack.postMessage({
       channel: "#general", // <-- you might want to change this!
-      text: "Hello Slack!",
+      text: "Triggered by a webhook",
     });
   },
 });
