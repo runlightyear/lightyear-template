@@ -1,5 +1,5 @@
 {
-  "name": "integration-template",
+  "name": "lightyear-template",
   "version": "1.0.0",
   "scripts": {
     "dev": "lightyear dev",
