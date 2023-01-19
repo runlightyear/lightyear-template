@@ -5,7 +5,7 @@ defineAction({
   name: "helloSlack",
   title: "Hello Slack",
   description: "Send a message to Slack",
-  apps: ['slack'],
+  apps: ["slack"],
   run: async ({ auths }) => {
     const slack = new Slack({ auth: auths.slack });
 
