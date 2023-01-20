@@ -1,27 +1,27 @@
-name: Pipeline
-
-on: [push]
-
-jobs:
-  deploy:
-    if: github.ref == 'refs/heads/main' && ${{ secrets.API_KEY }}
-
-    name: Deploy
-
-    runs-on: ubuntu-latest
-
-    env:
-      ENV_NAME: ${{ secrets.ENV_NAME }}
-      BASE_URL: ${{ secrets.BASE_URL }}
-      API_KEY: ${{ secrets.API_KEY }}
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - run: npm install
-
-      - run: npm run deploy
+#name: Pipeline
+#
+#on: [push]
+#
+#jobs:
+#  deploy:
+#    if: github.ref == 'refs/heads/main'
+#
+#    name: Deploy
+#
+#    runs-on: ubuntu-latest
+#
+#    env:
+#      ENV_NAME: ${{ secrets.ENV_NAME }}
+#      BASE_URL: ${{ secrets.BASE_URL }}
+#      API_KEY: ${{ secrets.API_KEY }}
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 16
+#
+#      - run: npm install
+#
+#      - run: npm run deploy
