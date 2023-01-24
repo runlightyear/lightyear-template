@@ -17,14 +17,16 @@ const githubWebhook = Github.defineWebhook({
 
 defineAction({
   name: "githubPushToSlack",
-  title: "GitHub push to Slack",
+  title: "GitHub Push to Slack",
   trigger: {
     webhook: githubWebhook,
   },
   apps: ["slack"],
   variables: ["channel"],
   run: async ({ data, auths, variables }) => {
-    const pushData = Github.parsePushPayload(data);
+    const pushData = Github.pushPayload(data);
+
+    console.info("Got a push payload");
 
     const slack = new Slack({ auth: auths.slack });
 
@@ -32,5 +34,7 @@ defineAction({
       channel: variables.channel,
       text: `Got push event on repo: ${pushData.repo}`,
     });
+
+    console.info("Posted message to slack")
   },
 });
