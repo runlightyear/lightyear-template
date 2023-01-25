@@ -32,7 +32,7 @@ defineAction({
 
     await slack.postMessage({
       channel: variables.channel,
-      text: `Got push event on repo: ${pushData.repo}`,
+      text: `Got push event on repo: ${pushData.repository.fullName}`,
     });
 
     console.info("Posted message to slack")
