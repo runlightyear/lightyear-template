@@ -13,5 +13,7 @@ defineAction({
       channel: "#general", // <-- you might want to change this!
       text: "Hello Slack!",
     });
+
+    console.info("Posted message to Slack");
   },
 });
