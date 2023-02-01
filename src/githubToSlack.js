@@ -35,6 +35,6 @@ defineAction({
       text: `Got push event on repo: ${pushData.repository.fullName}`,
     });
 
-    console.info("Posted message to slack")
+    console.info("Posted message to Slack")
   },
 });
