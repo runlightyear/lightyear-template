@@ -16,8 +16,8 @@ const githubWebhook = Github.defineWebhook({
 });
 
 defineAction({
-  name: "githubPushToSlack",
-  title: "GitHub Push to Slack",
+  name: "githubToSlack",
+  title: "GitHub to Slack",
   trigger: {
     webhook: githubWebhook,
   },
@@ -35,6 +35,6 @@ defineAction({
       text: `Got push event on repo: ${pushData.repository.fullName}`,
     });
 
-    console.info("Posted message to Slack")
+    console.info("Posted message to Slack");
   },
 });
