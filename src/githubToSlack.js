@@ -2,7 +2,7 @@ import { GitHub } from "@runlightyear/github";
 import { defineAction } from "@runlightyear/lightyear";
 import { Slack } from "@runlightyear/slack";
 
-const githubWebhook = Github.defineWebhook({
+const githubWebhook = GitHub.defineWebhook({
   name: "githubWebhook",
   title: "GitHub Webhook",
   variables: ["owner", "repo"],
