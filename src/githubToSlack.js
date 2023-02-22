@@ -1,4 +1,4 @@
-import { Github } from "@runlightyear/github";
+import { GitHub } from "@runlightyear/github";
 import { defineAction } from "@runlightyear/lightyear";
 import { Slack } from "@runlightyear/slack";
 
@@ -24,7 +24,7 @@ defineAction({
   apps: ["slack"],
   variables: ["channel"],
   run: async ({ data, auths, variables }) => {
-    const pushData = Github.pushPayload(data);
+    const pushData = GitHub.pushPayload(data);
 
     console.info("Got a push payload");
 
