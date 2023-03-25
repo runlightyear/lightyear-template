@@ -10,7 +10,7 @@ const githubWebhook = GitHub.defineWebhook({
     return {
       owner: variables.owner,
       repo: variables.repo,
-      events: ["push"],
+      event: "push",
     };
   },
 });
@@ -24,7 +24,7 @@ defineAction({
   apps: ["slack"],
   variables: ["channel"],
   run: async ({ data, auths, variables }) => {
-    const pushData = GitHub.pushPayload(data);
+    const pushPayload = GitHub.asPushPayload(data);
 
     console.info("Got a push payload");
 
@@ -32,7 +32,7 @@ defineAction({
 
     await slack.postMessage({
       channel: variables.channel,
-      text: `Got push event on repo: ${pushData.repository.fullName}`,
+      text: `Got push event on repo: ${pushPayload.repository.fullName}`,
     });
 
     console.info("Posted message to Slack");
