@@ -26,15 +26,17 @@ defineAction({
   run: async ({ data, auths, variables }) => {
     const pushPayload = GitHub.asPushPayload(data);
 
-    console.info("Got a push payload");
+    if (pushPayload) {
+      console.info("Got a push payload");
 
-    const slack = new Slack({ auth: auths.slack });
+      const slack = new Slack({ auth: auths.slack });
 
-    await slack.postMessage({
-      channel: variables.channel,
-      text: `Got push event on repo: ${pushPayload.repository.fullName}`,
-    });
+      await slack.postMessage({
+        channel: variables.channel,
+        text: `Got push event on repo: ${pushPayload.repository.fullName}`,
+      });
 
-    console.info("Posted message to Slack");
+      console.info("Posted message to Slack");
+    }
   },
 });
