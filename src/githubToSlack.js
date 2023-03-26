@@ -10,7 +10,7 @@ const githubWebhook = GitHub.defineWebhook({
     return {
       owner: variables.owner,
       repo: variables.repo,
-      event: "push",
+      events: ["push"],
     };
   },
 });
