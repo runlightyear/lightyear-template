@@ -1,8 +1,8 @@
 import { GitHub } from "@runlightyear/github";
 import { Slack } from "@runlightyear/slack";
 
-const GITHUB_OWNER = "<owner>";
-const GITHUB_REPO = "<repo>";  // Should we do env-specific config?
+const GITHUB_OWNER = "owner";
+const GITHUB_REPO = "repo";
 const SLACK_CHANNEL = "#general";
 
 GitHub.onPush({
