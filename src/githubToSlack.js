@@ -1,9 +1,18 @@
 import { GitHub } from "@runlightyear/github";
 import { Slack } from "@runlightyear/slack";
+import { getEnvName } from "@runlightyear/lightyear";
 
-const GITHUB_OWNER = "owner";
-const GITHUB_REPO = "repo";
-const SLACK_CHANNEL = "#general";
+let GITHUB_OWNER, GITHUB_REPO, SLACK_CHANNEL;
+
+if (getEnvName() === "dev") {
+  GITHUB_OWNER = "owner";
+  GITHUB_REPO = "repo";
+  SLACK_CHANNEL = "#general";
+} else if (getEnvName() === "prod") {
+  GITHUB_OWNER = "owner";
+  GITHUB_REPO = "repo";
+  SLACK_CHANNEL = "#general";
+}
 
 GitHub.onPush({
   name: "githubToSlack",
