@@ -8,7 +8,7 @@ if (getEnvName() === "dev") {
   GITHUB_OWNER = "owner";
   GITHUB_REPO = "repo";
   SLACK_CHANNEL = "#general";
-} else if (getEnvName() === "prod") {
+} else {
   GITHUB_OWNER = "owner";
   GITHUB_REPO = "repo";
   SLACK_CHANNEL = "#general";
