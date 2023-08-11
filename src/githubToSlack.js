@@ -2,6 +2,8 @@ import { GitHub } from "@runlightyear/github";
 import { Slack } from "@runlightyear/slack";
 import { getEnvName } from "@runlightyear/lightyear";
 
+const envName = getEnvName();
+
 const GITHUB_OWNER = "owner";
 const GITHUB_REPO = "repo";
 const SLACK_CHANNEL = "#general";
@@ -17,9 +19,7 @@ GitHub.onPush({
 
     await slack.postMessage({
       channel: SLACK_CHANNEL,
-      text: `[${getEnvName()}] Got push event on repo: ${
-        data.repository.fullName
-      }`,
+      text: `[${envName}] Got push event on repo: ${data.repository.fullName}`,
     });
 
     console.info("Posted message to Slack");
