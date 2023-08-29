@@ -4,9 +4,9 @@ import { getEnvName } from "@runlightyear/lightyear";
 
 const envName = getEnvName();
 
-const GITHUB_OWNER = "owner";
-const GITHUB_REPO = "repo";
-const SLACK_CHANNEL = "#general";
+const GITHUB_OWNER = "owner"; // The account owner of the repository. The name is not case sensitive.
+const GITHUB_REPO = "repo"; // The name of the repository without the .git extension. The name is not case sensitive.
+const SLACK_CHANNEL = "#general"; // The Slack channel to post messages in.
 
 GitHub.onPush({
   name: "githubToSlack",
