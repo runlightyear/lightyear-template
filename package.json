@@ -10,8 +10,6 @@
   "main": "build/index.js",
   "dependencies": {
     "@runlightyear/cli": "latest",
-    "@runlightyear/github": "latest",
-    "@runlightyear/lightyear": "latest",
-    "@runlightyear/slack": "latest"
+    "@runlightyear/lightyear": "latest"
   }
 }
