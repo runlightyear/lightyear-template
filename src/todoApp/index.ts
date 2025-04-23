@@ -1,3 +1,9 @@
+/**
+ * This is the entry point for the TodoApp integration.
+ *
+ * It defines the custom app and the sync integration.
+ */
+
 import {
   defineCustomApp,
   defineSyncIntegration,

@@ -1,3 +1,11 @@
+/**
+ * This is the model for the Task model.
+ *
+ * A model connector is a TypeScript class that synchronizes data between an app and a specific model within
+ * a collection. Its purpose is to handle the reading and writing of data for a particular data model
+ * within a sync integration.
+ */
+
 import {
   ModelConnector,
   ModelConnectorProps,
@@ -39,8 +47,8 @@ export class TaskModel extends ModelConnector<any, any, any, any> {
           data.status === "PENDING"
             ? "pending"
             : data.status === "IN_PROGRESS"
-            ? "inProgress"
-            : "completed",
+              ? "inProgress"
+              : "completed",
         dueDate: data.dueDate,
         completedAt: data.completedAt,
       },
