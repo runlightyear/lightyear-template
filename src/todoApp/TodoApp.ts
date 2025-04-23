@@ -1,3 +1,10 @@
+/**
+ * This is the connector for the TodoApp.
+ *
+ * A sync connector is a TypeScript class that defines the method of data exchange between your integration
+ * and an external application.
+ */
+
 import { AuthType, SyncConnector } from "@runlightyear/lightyear";
 import { TaskModel } from "./TaskModel";
 
