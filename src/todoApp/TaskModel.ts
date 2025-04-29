@@ -71,8 +71,6 @@ export class TaskModel extends ModelConnector<any, any, any, any> {
   }
 
   async list(props: ListProps): Promise<any> {
-    console.warn("in list", props);
-
     const response = await this.todoApp.request({
       method: "GET",
       url: "/todos",
@@ -112,8 +110,6 @@ export class TaskModel extends ModelConnector<any, any, any, any> {
   }
 
   async updateBatch(props: UpdateBatchProps<any>): Promise<any> {
-    console.warn("in update batch", props);
-
     await this.todoApp.requestBatch(
       props.changes.map((change) => ({
         method: "PATCH",
