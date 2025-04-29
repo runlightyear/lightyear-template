@@ -59,20 +59,27 @@ export class TaskModel extends ModelConnector<any, any, any, any> {
     return {
       title: data.title,
       description: data.description,
-      status: data.status,
-      due_date: data.dueDate,
-      completed_at: data.completedAt,
+      status:
+        data.status === "pending"
+          ? "PENDING"
+          : data.status === "inProgress"
+            ? "IN_PROGRESS"
+            : "COMPLETED",
+      dueDate: data.dueDate,
+      completedAt: data.completedAt,
     };
   }
 
   async list(props: ListProps): Promise<any> {
-    console.warn("in list");
+    console.warn("in list", props);
+
     const response = await this.todoApp.request({
       method: "GET",
       url: "/todos",
       params: {
         limit: 100,
         orderBy: "updatedAt",
+        updatedAt_gt: props.lastExternalUpdatedAt ?? undefined,
         offset: props.cursor ?? undefined,
       },
     });
@@ -83,40 +90,52 @@ export class TaskModel extends ModelConnector<any, any, any, any> {
       objects: validatedResponse.todos.map((todo: any) =>
         this.mapExternalToObject(todo)
       ),
-      cursor: validatedResponse.pagination
-        ? String(
-            validatedResponse.pagination.offset +
-              validatedResponse.pagination.limit
-          )
+      cursor: validatedResponse.pagination.hasMore
+        ? validatedResponse.pagination.nextOffset
         : undefined,
     };
   }
 
   async createBatch(props: CreateBatchProps<any>): Promise<any> {
     await this.todoApp.requestBatch(
-      props.changes.map((change: any) => ({
+      props.changes.map((change) => ({
         method: "POST",
         url: "/todos",
-        data: this.mapObjectDataToExternalData(change.object),
+        data: this.mapObjectDataToExternalData(change.data),
+        confirm: {
+          changeIds: [change.changeId],
+          idPath: "$.todo.id",
+          updatedAtPath: "$.todo.updatedAt",
+        },
       }))
     );
   }
 
   async updateBatch(props: UpdateBatchProps<any>): Promise<any> {
+    console.warn("in update batch", props);
+
     await this.todoApp.requestBatch(
-      props.changes.map((change: any) => ({
-        method: "PUT",
+      props.changes.map((change) => ({
+        method: "PATCH",
         url: `/todos/${change.externalId}`,
-        data: this.mapObjectDataToExternalData(change.object),
+        data: this.mapObjectDataToExternalData(change.data),
+        confirm: {
+          changeIds: [change.changeId],
+          idPath: "$.todo.id",
+          updatedAtPath: "$.todo.updatedAt",
+        },
       }))
     );
   }
 
   async deleteBatch(props: DeleteBatchProps): Promise<any> {
     await this.todoApp.requestBatch(
-      props.changes.map((change: any) => ({
+      props.changes.map((change) => ({
         method: "DELETE",
         url: `/todos/${change.externalId}`,
+        confirm: {
+          changeIds: [change.changeId],
+        },
       }))
     );
   }
